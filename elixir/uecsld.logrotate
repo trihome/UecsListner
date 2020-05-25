@@ -1,0 +1,24 @@
+#---------------------------------------------------------------------
+# uecsld.logrotate
+#---------------------------------------------------------------------
+#
+# ※改行コードはLFとすること
+#
+# 手順
+# パーミッションを変更
+# $ chmod 644 uecsld.logrotate
+# logrotateファイルをコピー（シンボリックリンクは不可）
+# $ sudo cp /home/kenkyu/gitwork/elixir/uecslistner/uecsld.logrotate /etc/logrotate.d/uecsld
+# logrotateに登録
+# $ sudo logrotate -f /etc/logrotate.d/uecsld
+#---------------------------------------------------------------------
+/home/kenkyu/gitwork/elixir/uecslistner/log/run.log {
+  daily
+  missingok
+  rotate 15
+  compress
+  delaycompress
+  notifempty
+  copytruncate
+  su kenkyu kenkyu
+}

@@ -1,0 +1,20 @@
+[Unit]
+Description=UECS Data Logger Daemon (elixir)
+After=local-fs.target
+ConditionPathExists=/home/ubuntu/gitwork/elixir/uecslistner
+
+[Service]
+WorkingDirectory=/home/ubuntu/gitwork/elixir/uecslistner
+ExecStart=/home/ubuntu/gitwork/elixir/uecslistner/uecsld.sh
+ExecStop=/bin/kill -QUIT ${MAINPID}
+ExecReload=/bin/kill -HUP ${MAINPID}
+Restart=always
+StartLimitInterval=60
+StartLimitBurst=3
+KillMode=mixed
+Type=simple
+User=ubuntu
+Group=ubuntu
+
+[Install]
+WantedBy=multi-user.target
